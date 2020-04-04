@@ -4,6 +4,9 @@ stages:
 
 image: docker:stable
 
+services:
+  - docker:18.09.7-dind
+
 build image:
   stage: build
   script:
