@@ -25,13 +25,14 @@ The rest of files are mainly for build file and test script
 │   └── index.md
 ├── http_test.py
 ├── mkdockerize.sh
-└── mkdocs.yml
+├── mkdocs.yml
+└── .gitlab-ci.yml
 ```
 
 ## Build the MkDocs app with Docker
 
-run the shell script `mkdockerize.sh`, the script will run docker commands to:
-1. build image of Mkdocs from Dockerfile.
+Run the shell script `mkdockerize.sh`, it will run docker commands to:
+1. Build image of Mkdocs from Dockerfile.
 2. Run Mkdocs as a container with port 8000 expose.
 3. Run `http_test.py` for self test.
 
@@ -45,11 +46,11 @@ CONTAINER ID        IMAGE               COMMAND             CREATED             
 
 ## Update Mkdocs config
 ### 1. live changes
-Since Mkdocs is running as a container, one can attach to the container by:
+Since Mkdocs is running as a container, you can go inside the container to make changes by attaching it:
 ```
 $ docker exec -it <container_id> /bin/bash
 ```
-then you may change any config in `mkdocs.yml` and `docs/`. The Mkdocs process will automatically pick up the changes you made.
+Then you may change any config in `mkdocs.yml` and `docs/`. The Mkdocs process will automatically pick up any changes you made.
 
 ### 2. Change from source codes
 One can also change the `mkdocs.yml` and `docs/` where you clone the project, then re-run `mkdockerize.sh`.  However the existing pod will be killed, and started new one with new config.
