@@ -1,0 +1,13 @@
+stages:
+  - test
+
+image: docker:stable
+
+docker build:
+  stage: build
+  script:
+    - docker build -t py-mkdocs .
+  only:
+    refs:
+      - develop
+      - master
