@@ -1,5 +1,4 @@
 #!/bin/sh
-
 printf "\nBuild Docker image\n"
 docker build -t py-mkdocs .
 printf "\run Docker containe"
@@ -8,4 +7,3 @@ printf "\wait for service up"
 sleep 5
 printf "\nopen web browser with URL http://127.0.0.1:8000"
 printf "\nnow test if service is up\n"
-curl -I http://127.0.0.1:8000
