@@ -36,6 +36,12 @@ run the shell script `mkdockerize.sh`, the script will run docker commands to:
 3. Run `http_test.py` for self test.
 
 Then you should be able to access `http://127.0.0.1:8000` from your local web browser.
+you can also view the status of running container with `docker ps`
+```
+$ docker ps -a
+CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS                     PORTS                    NAMES
+6ea5c6e3d9d2        py-mkdocs:latest    "mkdocs serve"      5 hours ago         Up 5 hours                 0.0.0.0:8000->8000/tcp   crazy_lovelace
+```
 
 ## Update Mkdocs config
 ### 1. live changes
