@@ -6,5 +6,9 @@ docker run -d -p 8000:8000 py-mkdocs:latest
 printf "\wait for service up"
 sleep 5
 printf "\nopen web browser with URL http://127.0.0.1:8000"
-printf "\nrun script to test URL\n"
-python http_test.py
+
+if which python > /dev/null; then
+  python http_test.py
+else
+  echo "No python installed, skip test"
+fi
