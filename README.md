@@ -1,6 +1,8 @@
 # mkdocs
-
 The project demonstrates a simple way to containerize a web application called MkDocs (https://www.mkdocs.org)
+
+## author
+lok.bruce@gmail.com
 
 ## Prerequisites
 * Python >= 2.7
@@ -32,6 +34,7 @@ run the shell script `mkdockerize.sh`, the script will run docker commands to:
 1. build image of Mkdocs from Dockerfile.
 2. Run Mkdocs as a container with port 8000 expose.
 3. Run `http_test.py` for self test.
+
 Then you should be able to access `http://127.0.0.1:8000` from your local web browser.
 
 ## Update Mkdocs config
@@ -40,7 +43,7 @@ Since Mkdocs is running as a container, one can attach to the container by:
 ```
 $ docker exec -it <container_id> /bin/bash
 ```
-then change any config you want in `mkdocs.yml` and `docs/`. The Mkdocs process will automatically pick up the changes you made.
+then you may change any config in `mkdocs.yml` and `docs/`. The Mkdocs process will automatically pick up the changes you made.
 
 ### 2. Change from source codes
 One can also change the `mkdocs.yml` and `docs/` where you clone the project, then re-run `mkdockerize.sh`.  However the existing pod will be killed, and started new one with new config.
