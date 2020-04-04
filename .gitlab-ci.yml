@@ -15,6 +15,9 @@ build image:
     refs:
       - develop
       - master
+  except:
+    changes:
+      - "README.md"
 
 run container:
   stage: test
@@ -24,3 +27,6 @@ run container:
     refs:
       - develop
       - master
+  except:
+    changes:
+      - "README.md"
