@@ -9,7 +9,7 @@ sleep 5
 if which python > /dev/null; then
   python http_test.py
 else
-  bash -c "</dev/tcp/127.0.0.1/8000"; echo $?
+  /bin/bash -c "</dev/tcp/127.0.0.1/8000"; echo $?
 fi
 
 printf "\nopen web browser with URL http://127.0.0.1:8000\n"
