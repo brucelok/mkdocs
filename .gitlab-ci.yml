@@ -23,6 +23,8 @@ run container:
   stage: test
   script:
     - ./mkdockerize.sh
+    - sleep 5
+    - docker exec -i my-mkdocs python http_test.py
   only:
     refs:
       - develop

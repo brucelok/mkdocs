@@ -1,4 +1,5 @@
 # the script to test http://127.0.0.1:8000 if the MkDocs service is up
+import sys
 import urllib2
 from urllib2 import URLError, HTTPError
 
