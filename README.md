@@ -32,6 +32,7 @@ The rest of files are mainly for build file and test script
 ## Build the MkDocs app with Docker
 
 run the shell script `mkdockerize.sh` locally, the script will:
+1. Check and remove the existing MkDocs container
 1. Build image of Mkdocs from Dockerfile.
 2. Run Mkdocs as a container with port 8000 expose.
 
