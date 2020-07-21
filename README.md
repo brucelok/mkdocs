@@ -55,8 +55,10 @@ then you may change any config in `mkdocs.yml` and `docs/`. The Mkdocs process w
 ### 2. Change from source codes
 One can also change the `mkdocs.yml` and `docs/` where you clone the project, then re-run `mkdockerize.sh`.  However the existing pod will be killed, and started new one with new config.
 
-## CI jobs
+## Pipelines
 The CI contains two stages `Build` and `Test`:
+https://gitlab.com/lok.bruce/mkdocs/-/pipelines/136139791
+
 ### 1. Build
 It simply runs `docker build` command to test building image from Dockerfile.
 
@@ -65,3 +67,5 @@ It will test the full cycle of building image, running and testing the container
 1. Builds docker image from dockerfile
 2. Creates a container named `my-mkdocs` over the the image
 3. Attachs to the container and run `http_test.py` to test if Mkdocs is up and running
+
+Note: the `http_test.py` which is optional can used to self test the mkdocs http service.  If your hosted container image comes with tool like `curl` or `netcat`, you don't need this script 
