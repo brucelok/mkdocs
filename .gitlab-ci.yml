@@ -1,11 +1,37 @@
 stages:
-  - build
   - test
+  - build
+  - deploy
 
 image: docker:19.03.0
 
 services:
   - docker:19.03.0-dind
+
+Sonarqube-check:
+  stage: test
+  image: python:2.7-slim
+  script:
+    - echo 'scanning code quality'
+  only:
+    refs:
+      - develop
+  except:
+    changes:
+      - "README.md"
+
+syntax-check:
+  stage: test
+  image: python:2.7-slim
+  script:
+    - pip install pylint
+    - pylint *.py --confidence=INFERENCE
+  only:
+    refs:
+      - develop
+  except:
+    changes:
+      - "README.md"
 
 build image:
   stage: build
@@ -14,20 +40,18 @@ build image:
   only:
     refs:
       - develop
-      - master
   except:
     changes:
       - "README.md"
 
 run container:
-  stage: test
+  stage: deploy
   script:
     - ./mkdockerize.sh
     - sleep 5
     - docker exec -i my-mkdocs python http_test.py
   only:
     refs:
-      - develop
       - master
   except:
     changes:
