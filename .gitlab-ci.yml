@@ -3,10 +3,10 @@ stages:
   - build
   - deploy
 
-image: docker:19.03.0
+image: docker:19.03.12
 
 services:
-  - docker:19.03.0-dind
+  - docker:19.03.12-dind
 
 Sonarqube-check:
   stage: test
@@ -39,6 +39,7 @@ build image:
     #- docker build -t py-mkdocs .
     - docker login -u $USER -p $PAT registry.gitlab.com
     - docker build -t registry.gitlab.com/lok.bruce/mkdocs .
+    - docker push registry.gitlab.com/lok.bruce/mkdocs:latest
   only:
     refs:
       - develop
