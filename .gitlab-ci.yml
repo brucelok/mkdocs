@@ -36,7 +36,9 @@ syntax-check:
 build image:
   stage: build
   script:
-    - docker build -t py-mkdocs .
+    #- docker build -t py-mkdocs .
+    - docker login -u $USER -p $PAT registry.gitlab.com
+    - docker build -t registry.gitlab.com/lok.bruce/mkdocs .
   only:
     refs:
       - develop
