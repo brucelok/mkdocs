@@ -36,7 +36,6 @@ syntax-check:
 build image:
   stage: build
   script:
-    #- docker build -t py-mkdocs .
     - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD registry.gitlab.com
     - docker build -t registry.gitlab.com/lok.bruce/mkdocs .
     - docker push registry.gitlab.com/lok.bruce/mkdocs:latest
@@ -50,7 +49,9 @@ build image:
 run container:
   stage: deploy
   script:
-    - ./mkdockerize.sh
+    #- ./mkdockerize.sh
+    - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD registry.gitlab.com
+    - docker run --name my-mkdocs -d -p 8000:8000 registry.gitlab.com/lok.bruce/mkdocs:latest
     - sleep 5
     - docker exec -i my-mkdocs python http_test.py
   only:
