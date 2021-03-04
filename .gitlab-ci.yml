@@ -37,7 +37,7 @@ build image:
   stage: build
   script:
     #- docker build -t py-mkdocs .
-    - docker login -u $USER -p $PAT registry.gitlab.com
+    - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD registry.gitlab.com
     - docker build -t registry.gitlab.com/lok.bruce/mkdocs .
     - docker push registry.gitlab.com/lok.bruce/mkdocs:latest
   only:
