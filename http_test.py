@@ -10,7 +10,7 @@ response = urllib2.Request(url)
 try:
     data = urllib2.urlopen(response)
     the_page = data.read()
-    print(url +" --> OK")
+    print(url +" --> OK FWD")
 
 except HTTPError, err:
     print (err.code, err.reason)
