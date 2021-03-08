@@ -9,8 +9,9 @@ response = urllib2.Request(url)
 
 try:
     data = urllib2.urlopen(response)
+    status_code = data.getcode()
     the_page = data.read()
-    print(url +" --> OK FWD")
+    print(url + ", status code: " + str(status_code))
 
 except HTTPError, err:
     print (err.code, err.reason)

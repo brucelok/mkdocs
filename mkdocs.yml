@@ -1,4 +1,4 @@
-site_name: Query Mac API
+site_name: Query Mac Address API
 site_url: https://gitlab.com/lok.bruce/query-mac-api
 site_description: A simple API in Python to query manufacturer of a Mac address from https://macaddress.io.
 site_author: lok.bruce@gmail.com

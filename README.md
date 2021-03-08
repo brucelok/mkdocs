@@ -56,16 +56,15 @@ then you may change any config in `mkdocs.yml` and `docs/`. The Mkdocs process w
 One can also change the `mkdocs.yml` and `docs/` where you clone the project, then re-run `mkdockerize.sh`.  However the existing pod will be killed, and started new one with new config.
 
 ## Pipelines
-The CI contains two stages `Build` and `Test`:
-https://gitlab.com/lok.bruce/mkdocs/-/pipelines/136139791
+This example pipelines contains three stages `test`, `build` and `deploy`:
 
-### 1. Build
-It simply runs `docker build` command to test building image from Dockerfile.
+### 1. Test
+It will simply run two CI jobs to check code quality.
+1. Runs python syntax check
+2. Runs Sonarqube check (Just a placeholder, will be run on free SaaS.)
 
-### 2. Test
-It will test the full cycle of building image, running and testing the container by execute shell script `mkdockerize.sh`:
-1. Builds docker image from dockerfile
-2. Creates a container named `my-mkdocs` over the the image
-3. Attachs to the container and run `http_test.py` to test if Mkdocs is up and running
+### 2. Build
+It will build the docker image from Dockerfile, then push to the GitLab's built-in registry.
 
-Note: the `http_test.py` which is optional can used to self test the mkdocs http service.  If your hosted container image comes with tool like `curl` or `netcat`, you don't need this script 
+### 3. deploy
+When code merge to `master` branch, CI job will run mkdoc app as docker container. Follow by self testing if mkdoc http service is up.
