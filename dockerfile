@@ -6,6 +6,6 @@ WORkDIR /app
 COPY . /app
 
 # install MkDocs
-RUN pip install mkdocs
+RUN pip install mkdocs curl
 EXPOSE 8000
 CMD ["mkdocs", "serve"]
