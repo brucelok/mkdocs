@@ -56,7 +56,7 @@ run container:
     - docker run --name my-mkdocs -d -p 8000:8000 registry.gitlab.com/lok.bruce/mkdocs:latest
     - sleep 5
     - docker exec -i my-mkdocs python http_test.py
-    - curl -i http://127.0.0.1:8000
+    - docker exec -i my-mkdocs curl -i http://127.0.0.1:8000
   only:
     refs:
       - master
