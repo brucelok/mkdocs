@@ -3,24 +3,15 @@ stages:
   - build
   - deploy
 
+include:
+  - template: Code-Quality.gitlab-ci.yml
+
 image: docker:19.03.12
 
 services:
   - docker:19.03.12-dind
 
-Sonarqube-check:
-  stage: test
-  image: python:2.7-slim
-  script:
-    - echo 'scanning code quality'
-  only:
-    refs:
-      - develop
-  except:
-    changes:
-      - "README.md"
-
-syntax-check:
+syntax_check:
   stage: test
   image: python:2.7-slim
   script:
@@ -33,7 +24,16 @@ syntax-check:
     changes:
       - "README.md"
 
-build image:
+code_quality:
+  stage: test
+  image: docker:stable
+  artifacts:
+    reports:
+      codequality: gl-code-quality-report.json
+  rules:
+    - if: '$CI_COMMIT_BRANCH == "develop"'
+
+build_docker_image:
   stage: build
   script:
     - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD registry.gitlab.com
@@ -46,7 +46,7 @@ build image:
     changes:
       - "README.md"
 
-run container:
+run_container:
   stage: deploy
   script:
     #- ./mkdockerize.sh
