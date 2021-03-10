@@ -17,9 +17,6 @@ code_quality:
     REPORT_FORMAT: html
   artifacts:
     paths: [gl-code-quality-report.html]
-  except:
-    changes:
-      - "README.md"
 
 syntax-check:
   stage: test
